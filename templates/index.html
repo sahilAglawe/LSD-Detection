@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lumpy Skin Disease Detection</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Parkinsans:wght@300..800&display=swap" rel="stylesheet">
+     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,0,0" />
+    
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <header>
+   
+        <nav>
+          <ul>
+            <img style="font-size: 20px;" src="data:image/png;base64,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" alt="external-cow-animal-flaticons-lineal-color-flat-icons-3">
+            <li style="color: black; font-weight: bold; font-size: 30px; font-family: 'Arial', sans-serif;">LSD Detection</li>
+    
+            <li><a href="#home" onclick="navigate('home')">Home</a></li>
+            <li><a href="#symptoms" onclick="navigate('symptoms')">Symptoms</a></li>
+            <li><a href="#detection" onclick="navigate('detection')">Detection</a></li>
+             <li><a href="#Treatment" onclick="navigate('Treatment')">Treatment</a></li>
+             <li><a href="#resources" onclick="navigate('resources')">Resources</a></li>
+          </ul>
+        </nav>
+      </header>
+    
+      <main>
+        <div id="home" class="content">
+          <br> <br> <br>
+          <h2>Lumpy Skin Disease: Information, History, and Impact Introduction </h2>
+         <p>Lumpy Skin Disease (LSD) is a viral disease that primarily affects cattle, causing significant economic losses, 
+      particularly in regions where livestock farming is a major agricultural activity.
+       It is characterized by the appearance of nodules or lumps on the skin and other parts of the body,
+       along with systemic symptoms such as fever, swelling of the lymph nodes, and a decrease in milk production.
+       LSD is caused by the Lumpy Skin Disease virus (LSDV), a member of the Capripoxvirus genus in the family Poxviridae.
+    
+      Though LSD is not directly harmful to humans, its impact on livestock populations, especially cattle, 
+      can be severe. The disease is transmitted by insect vectors like biting flies, mosquitoes, and ticks, 
+      and can spread rapidly, particularly in areas with large concentrations of cattle. This article delves into the history, 
+      transmission, clinical features, and the broader impact of Lumpy Skin Disease, with a focus on its spread, control measures, and ongoing challenges.
+    </p>
+    
+    
+      
+        <div id="image-box" class="container">
+          <div class="slider-wrapper">
+            <button id="prev-slide" class="slide-button material-symbols-rounded">chevron_left</button>
+            <ul class="image-list">
+                <img  class="image-item" src="{{ url_for('static', filename='image1.jpg') }}" alt="Example Image">
+                <img  class="image-item" src="{{ url_for('static', filename='image2.jpg') }}" alt="Example Image">
+                <img  class="image-item" src="{{ url_for('static', filename='image3.jpg') }}" alt="Example Image">
+                <img  class="image-item" src="{{ url_for('static', filename='image4.jpg') }}" alt="Example Image">
+                <img  class="image-item" src="{{ url_for('static', filename='image5.jpg') }}" alt="Example Image">
+                <img  class="image-item" src="{{ url_for('static', filename='image6.jpg') }}" alt="Example Image">
+                <img  class="image-item" src="{{ url_for('static', filename='image7.jpg') }}" alt="Example Image">
+                <img  class="image-item" src="{{ url_for('static', filename='image8.jpg') }}" alt="Example Image">
+          
+            </ul>
+            <button id="next-slide" class="slide-button material-symbols-rounded"> chevron_right</button>
+          </div>
+          <div class="slider-scrollbar">
+            <div class="scrollbar-track">
+              <div class="scrollbar-thumb"></div>
+            </div>
+          </div>
+        </div>
+    </div>
+      
+    
+    <div class="content">
+      
+      <h2>Discovery and Early History</h2>
+     <p> Lumpy Skin Disease was first described in Nigeria in 1929. The disease gained attention after it caused an 
+      outbreak in the 1920s-1930s, primarily in West Africa, where it was initially localized. The virus that causes 
+      LSD belongs to the same family as other poxviruses like sheep pox and goat pox, which have been known to cause similar 
+      symptoms in other livestock species.
+      
+      Initially, the disease was observed in small pockets of cattle in Africa, and it was not well understood by veterinarians
+       and scientists. However, over the following decades, LSD gradually began to spread throughout the African continent. 
+       Despite its early appearance in Africa, it took some time before it was recognized as a significant threat to cattle 
+       farming and broader livestock industries.
+      </p>
+    </div>
+    
+    <div class="content">
+     <h1> Transmission and Pathophysiology</h1>
+    <p>Lumpy Skin Disease is primarily transmitted through arthropod vectors, such as biting flies, mosquitoes, and ticks, 
+    which acquire the virus when they feed on an infected animal and subsequently transmit it to other cattle. Direct
+     transmission between animals through aerosol droplets (respiratory secretions) and contaminated equipment
+      (such as needles or troughs) can also occur, though this mode of transmission is less common.
+    
+    Once the virus enters the body, it initially infects the skin and lymphatic tissues, leading to the development 
+    of the characteristic lumps or nodules. The virus can also affect internal organs, leading to systemic symptoms 
+    such as fever, decreased appetite, weight loss, and swelling of the lymph nodes. Affected cattle may show signs 
+    of respiratory distress and diarrhea in severe cases, and secondary bacterial infections can exacerbate the condition.
+    
+    In severe outbreaks, cattle may also develop ulcerative lesions in the mouth, which can interfere with feeding and
+     lead to dehydration and malnutrition. Bulls are often more severely affected by the disease, with a higher risk 
+     of developing testicular inflammation and reduced fertility, leading to significant economic losses in affected herds.
+    </p>
+    </div>
+    <div class="content">
+      <h1>Economic Impact</h1>
+      <p>The economic impact of LSD can be severe, particularly in countries with large cattle populations. Direct losses result from:
+      
+      Reduced milk production: Affected cows produce less milk, leading to losses for dairy farmers.
+      Decreased fertility: Both bulls and cows may experience infertility or difficulty in breeding, leading to reduced herd growth and breeding stock.
+      Increased veterinary costs: Treatment of infected animals and measures to control the spread of the disease increase expenses for farmers.
+      Trade restrictions: Countries affected by LSD often face restrictions on the export of cattle and related products, which can lead to significant losses in international trade.
+      The cost of controlling LSD through vaccination campaigns, vector control, and movement restrictions also places a burden on national economies, particularly in developing countries.
+      </p>
+    </div>
+    </div>
+</section>
+
+
+    <section id="symptoms">
+     <div class="container">
+        <br> <br> <br>                                
+    <h1 class="queh1">Lumpy Skin Disease (LSD) Detection Questionnaire</h1>
+    <form id="lsd-form">
+        <div class="question">
+            <label>1. Have you noticed any unusual lumps or nodules on the skin of your cattle?</label>
+            <div class="radio-group">
+                <input type="radio" id="q1-yes" name="question1" value="Yes" required>
+                <label for="q1-yes">Yes</label>
+                <input type="radio" id="q1-no" name="question1" value="No">
+                <label for="q1-no">No</label>
+            </div>
+        </div>
+
+        <div class="question">
+            <label>2. Have any of your cattle experienced a high fever, around 41°C or higher?</label>
+            <div class="radio-group">
+                <input type="radio" id="q2-yes" name="question2" value="Yes" required>
+                <label for="q2-yes">Yes</label>
+                <input type="radio" id="q2-no" name="question2" value="No">
+                <label for="q2-no">No</label>
+            </div>
+        </div>
+
+        <div class="question">
+            <label>3. Do you observe any swelling in the lymph nodes, especially around the neck, of your cattle?</label>
+            <div class="radio-group">
+                <input type="radio" id="q3-yes" name="question3" value="Yes" required>
+                <label for="q3-yes">Yes</label>
+                <input type="radio" id="q3-no" name="question3" value="No">
+                <label for="q3-no">No</label>
+            </div>
+        </div>
+
+        <div class="question">
+            <label>4. Have any of your cattle shown discharge from their nose or eyes?</label>
+            <div class="radio-group">
+                <input type="radio" id="q4-yes" name="question4" value="Yes" required>
+                <label for="q4-yes">Yes</label>
+                <input type="radio" id="q4-no" name="question4" value="No">
+                <label for="q4-no">No</label>
+            </div>
+        </div>
+
+        <div class="question">
+            <label>5. Have you seen any swelling in the limbs, chest (brisket), or genital areas of your cattle?</label>
+            <div class="radio-group">
+                <input type="radio" id="q5-yes" name="question5" value="Yes" required>
+                <label for="q5-yes">Yes</label>
+                <input type="radio" id="q5-no" name="question5" value="No">
+                <label for="q5-no">No</label>
+            </div>
+        </div>
+
+        <div class="question">
+            <label>6. Are any of your cattle limping or showing signs of lameness?</label>
+            <div class="radio-group">
+                <input type="radio" id="q6-yes" name="question6" value="Yes" required>
+                <label for="q6-yes">Yes</label>
+                <input type="radio" id="q6-no" name="question6" value="No">
+                <label for="q6-no">No</label>
+            </div>
+        </div>
+
+        <div class="question">
+            <label>7. Has there been a noticeable decrease in milk production in your cows?</label>
+            <div class="radio-group">
+                <input type="radio" id="q7-yes" name="question7" value="Yes">
+                <label for="q7-yes">Yes</label>
+                <input type="radio" id="q7-no" name="question7" value="No">
+                <label for="q7-no">No</label>
+            </div>
+        </div>
+
+        <div class="question">
+            <label>8. Have you observed yellowish-grey lesions on the tongue of your cattle?</label>
+            <div class="radio-group">
+                <input type="radio" id="q8-yes" name="question8" value="Yes" required>
+                <label for="q8-yes">Yes</label>
+                <input type="radio" id="q8-no" name="question8" value="No">
+                <label for="q8-no">No</label>
+            </div>
+        </div>
+
+        <div class="question">
+            <label>9. Is there swelling or tenderness in the udder or testicles of any of your cattle?</label>
+            <div class="radio-group">
+                <input type="radio" id="q9-yes" name="question9" value="Yes" required>
+                <label for="q9-yes">Yes</label>
+                <input type="radio" id="q9-no" name="question9" value="No">
+                <label for="q9-no">No</label>
+            </div>
+        </div>
+
+        <div class="question">
+            <label>10. Have you seen an increase in salivation or drooling in any of your cattle?</label>
+            <div class="radio-group">
+                <input type="radio" id="q10-yes" name="question10" value="Yes" required>
+                <label for="q10-yes">Yes</label>
+                <input type="radio" id="q10-no" name="question10" value="No">
+                <label for="q10-no">No</label>
+            </div>
+        </div>
+
+       
+
+        <button type="submit" class="submit-btns">Submit Answers</button>
+    </form>
+    <div id="result__s" class="result__s"></div>
+</div>
+</section>
+
+
+<!-- Detection Section -->
+<section id="detection">
+    <div id="Detection" class="container">
+        <br> <br> <br>
+    <h2>Detection of Lumpy Skin Disease</h2>
+    <form action="/predict" method="POST" enctype="multipart/form-data">
+        <input type="file" name="file" accept="image/*" required>
+        <button type="submit">Detect</button>
+    </form>
+   </div>
+    <!-- Flask will render this section dynamically -->
+    {% if result %}
+    <div class="result">
+        <h2>Result: {{ result }}</h2>
+    </div>
+    {% endif %}
+</section>
+
+    <!-- Treatment Section -->
+    <section id="treatment">
+        <div id="Treatment" class="container">
+            <br> <br> <br>
+          <p>
+             <h3> 1. Vaccination (Prention and Control)</h3>
+        Vaccination is the most effective method to prevent LSD and control outbreaks.
+        Live attenuated vaccines are commonly used and provide immunity within a few weeks of administration.
+        Vaccination should be performed in areas where LSD is prevalent or in regions at risk of an outbreak.
+        In case of an outbreak, mass vaccination campaigns are essential to control further spread.
+        <br>
+        <br>
+              <h3>2. Supportive Care </h3>
+        Hydration: Ensure that affected cattle have access to fresh water and are properly hydrated, 
+        especially if they are suffering from fever, reduced appetite, or diarrhea.
+        Nutritional Support: Providing high-quality feed and supplements (such as vitamins and minerals)
+         to maintain strength and recovery during illness.
+        Rest: Infected cattle should be given adequate rest to recover from the disease.
+        <br>
+        <br>
+        
+              <h3>3. Antibiotics for Secondary Infections </h3>
+        Since LSD can lead to secondary bacterial infections (e.g., in open sores or ulcers), antibiotics may be prescribed by a veterinarian.
+        Common antibiotics include penicillin, tetracyclines, and cephalosporins, which help prevent complications like pneumonia or septicemia.
+        <br>
+        <br>
+               <h3>4. Pain and Inflammation Management </h3>
+        Anti-inflammatory drugs such as NSAIDs (e.g., flunixin meglumine or meloxicam) can be used to reduce fever, swelling, and pain associated with skin lesions and swollen lymph nodes.
+        These drugs also help manage the discomfort caused by the lumps and other symptoms.
+        <br>
+        <br>
+        
+               <h3>5. Local Treatment for Skin Lesions </h3>
+        Topical antiseptics may be applied to the skin lesions or ulcers to prevent secondary bacterial infections and promote healing.
+        Some farmers use antiseptic powders or wound healing ointments to treat individual lumps or ulcerative lesions.
+        Saline solutions or iodine-based solutions are sometimes used to cleanse the wounds.
+        <br>
+        <br>
+        
+                <h3>6. Vector Control </h3>
+        Since LSD is transmitted by insect vectors (such as biting flies, mosquitoes, and ticks), controlling these vectors is a key component of managing outbreaks.
+        Use insecticides or repellents on cattle to minimize insect bites.
+        Fly traps, mosquito nets, and other physical barriers can be used to protect livestock from insect exposure.
+        Environmental control measures to reduce insect breeding sites can help lower vector populations.
+        <br>
+        <br>
+               <h3>7. Isolation and Quarantine </h3>
+        Infected animals should be isolated from healthy cattle to prevent the spread of LSD to other animals in the herd.
+        Any new arrivals should be quarantined for at least 21 days to ensure they are not carrying the virus.
+        Movement restrictions may be imposed in the affected areas to limit the spread of the disease.
+        <br>
+        <br>
+        
+               <h3>8. General Hygiene and Farm Management </h3>
+        Sanitation: Regular cleaning and disinfection of barns, equipment, and utensils (such as feeding troughs) to prevent transmission through contaminated surfaces.
+        Protective gear: Workers handling sick cattle should wear appropriate protective clothing (e.g., gloves, masks) to reduce the risk of spreading the virus.
+        <br>
+        <br>
+        
+                <h3>9. Monitoring and Surveillance </h3>
+        Regular monitoring of livestock for symptoms and rapid reporting of new cases can help identify and manage outbreaks early.
+        Infected cattle should be regularly checked for signs of improvement or worsening of symptoms.
+        Veterinary surveillance is essential to track the disease's progression and evaluate the effectiveness of control measures.
+        <br>
+        <br>
+        
+                <h3>10. Culling (in Severe Cases) </h3>
+        In some severe cases, particularly where the infection leads to significant complications or death, culling may be necessary to prevent the virus from spreading further within the herd.
+        Culling is typically considered a last resort when all other control measures fail.
+        </p>
+        </div>
+          </div>
+</section>
+
+<section id="resources">
+    <br> <br> <br>
+            <div id="resources" class="container">
+
+              <h2>Resources</h2>
+             1. Maharashtra Animal Husbandry Department: Provides vaccination campaigns, disease control measures, and farmer assistance programs. Visit their official portal for details on free vaccination drives and disease management strategies.
+               <a href="https://ah.maharashtra.gov.in">More info. </a>
+             <br>
+             <br>
+             2. New Indian Express Report: Highlights government initiatives such as free vaccinations for cattle and the establishment of support systems like toll-free helplines.
+              <a href="https://www.newindianexpress.com/states/karnataka/2024/Jul/10/bengaluru-scientists-develop-test-kit-for-lumpy-skin-in-cattle">Read the article here.</a>
+              <br>
+              <br>
+             3. India Today Coverage: Discusses the compensation plan for affected farmers and control measures like restricting cattle transport in Maharashtra. 
+             <a href="https://www.indiatoday.in/science/story/scientists-track-how-the-lumpy-skin-disease-killed-over-100000-cows-in-india-2522251-2024-04-02">Read more.</a>
+             <br>
+             <br>
+             4. Livestock Advisory Portal: Offers general information and updates about LSD across India, including Maharashtra.
+             <a href="https://arccjournals.com/journal/indian-journal-of-animal-research/BF-1793">Visit the advisory.</a>
+             <br>
+             <br>
+             5. Maharashtra Helpline: Toll-free numbers like 18002330418 (animal husbandry helpline) and 1962 (state-level call center) can be used to report and seek guidance for LSD cases.
+             <a href="https://www.india.com/news/india/lumpy-skin-disease-maharashtra-on-alert-toll-free-helpline-number-issued-deets-inside-5627220/">More info.</a>
+            </div>
+          
+       </section>
+
+
+          <footer>
+            <p>&copy; 2024 Lumpy Skin Disease Detection | Made with ❤️ for a Better Future</p>
+          </footer>
+        
+       
+        </body>
+        </html>
+        
