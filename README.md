@@ -1,83 +1,67 @@
-🐄 Lumpy Skin Disease Detection in Cattle
-📌 Project Overview
+# 🐄 Lumpy Skin Disease Detection in Cattle
 
-Lumpy Skin Disease (LSD) is a contagious viral disease affecting cattle, causing skin nodules, fever, reduced milk production, and economic losses for farmers.
-This project aims to detect Lumpy Skin Disease in cattle using image processing and machine learning techniques, enabling early diagnosis and timely treatment.
+## 📌 Project Overview
+Lumpy Skin Disease (LSD) is a contagious viral disease affecting cattle, causing skin nodules, fever, reduced milk production, and significant economic losses for farmers.  
+This project aims to **detect Lumpy Skin Disease in cattle using image processing and machine learning techniques**, enabling **early diagnosis and timely treatment**.
 
-🎯 Objectives
+---
 
-Detect LSD from cattle skin images
+## 🎯 Objectives
+- Detect LSD from cattle skin images  
+- Reduce dependency on manual veterinary diagnosis  
+- Enable early disease identification  
+- Support farmers and veterinarians with AI-based assistance  
 
-Reduce dependency on manual veterinary diagnosis
+---
 
-Enable early disease identification
-
-Support farmers and veterinarians with AI-based assistance
-
-🧠 Problem Statement
-
+## 🧠 Problem Statement
 Traditional LSD detection relies on physical inspection by veterinarians, which can be:
+- Time-consuming  
+- Expensive  
+- Inaccessible in rural areas  
 
-Time-consuming
+This system provides an **automated, fast, and accurate detection mechanism** using image analysis.
 
-Expensive
+---
 
-Inaccessible in rural areas
+## ⚙️ System Features
+- Image-based disease detection  
+- Preprocessing of cattle skin images  
+- Machine learning / deep learning-based classification  
+- Accurate identification of infected cattle  
+- User-friendly interface (optional)  
 
-This system provides an automated, fast, and accurate detection mechanism using image analysis.
+---
 
-⚙️ System Features
+## 🛠️ Technologies Used
+- **Programming Language:** Python  
+- **Libraries:**  
+  - OpenCV  
+  - NumPy  
+  - Pandas  
+  - Matplotlib  
+  - Scikit-learn / TensorFlow / Keras  
+- **Model:** CNN / ML Classifier  
+- **Dataset:** Cattle images (LSD affected & healthy)  
 
-Image-based disease detection
+---
 
-Preprocessing of cattle skin images
+## 🧩 System Architecture
+1. Image Input  
+2. Image Preprocessing  
+3. Feature Extraction  
+4. Model Training  
+5. Disease Classification  
+6. Result Output  
 
-Machine learning / deep learning-based classification
+---
 
-Accurate identification of infected cattle
-
-User-friendly interface (optional)
-
-🛠️ Technologies Used
-
-Programming Language: Python
-
-Libraries:
-
-OpenCV
-
-NumPy
-
-Pandas
-
-Matplotlib
-
-Scikit-learn / TensorFlow / Keras
-
-Model: CNN / ML Classifier
-
-Dataset: Cattle images (LSD affected & healthy)
-
-🧩 System Architecture
-
-Image Input
-
-Image Preprocessing
-
-Feature Extraction
-
-Model Training
-
-Disease Classification
-
-Result Output
-
-📂 Project Structure
+## 📂 Project Structure
 LSD-Detection/
 │
 ├── dataset/
-│   ├── infected/
-│   └── healthy/
+│ ├── infected/
+│ └── healthy/
 │
 ├── preprocessing/
 ├── model/
@@ -86,29 +70,29 @@ LSD-Detection/
 ├── requirements.txt
 └── README.md
 
-🚀 How to Run the Project
+yaml
+Copy code
 
-Clone the repository
+---
 
+## 🚀 How to Run the Project
+
+### 1️⃣ Clone the Repository
+```bash
 git clone https://github.com/your-username/lsd-detection.git
-
-
-Install dependencies
-
+2️⃣ Install Dependencies
+bash
+Copy code
 pip install -r requirements.txt
-
-
-Train the model
-
+3️⃣ Train the Model
+bash
+Copy code
 python training.py
-
-
-Test the model
-
+4️⃣ Test the Model
+bash
+Copy code
 python testing.py
-
 📊 Expected Results
-
 Accurate classification of LSD-infected cattle
 
 Reduced diagnosis time
@@ -116,7 +100,6 @@ Reduced diagnosis time
 Improved disease management
 
 🔮 Future Enhancements
-
 Mobile application integration
 
 Real-time camera-based detection
