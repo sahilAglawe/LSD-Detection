@@ -70,8 +70,7 @@ LSD-Detection/
 ├── requirements.txt
 └── README.md
 
-yaml
-Copy code
+
 
 ---
 
@@ -80,19 +79,29 @@ Copy code
 ### 1️⃣ Clone the Repository
 ```bash
 git clone https://github.com/your-username/lsd-detection.git
+
 2️⃣ Install Dependencies
 bash
+
 Copy code
 pip install -r requirements.txt
+
+
 3️⃣ Train the Model
 bash
 Copy code
 python training.py
+
+
 4️⃣ Test the Model
 bash
 Copy code
 python testing.py
+
+
 📊 Expected Results
+
+
 Accurate classification of LSD-infected cattle
 
 Reduced diagnosis time
@@ -100,6 +109,8 @@ Reduced diagnosis time
 Improved disease management
 
 🔮 Future Enhancements
+
+
 Mobile application integration
 
 Real-time camera-based detection
