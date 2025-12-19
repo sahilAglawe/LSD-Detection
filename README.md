@@ -56,23 +56,7 @@ This system provides an **automated, fast, and accurate detection mechanism** us
 
 ---
 
-## 📂 Project Structure
-LSD-Detection/
-│
-├── dataset/
-│ ├── infected/
-│ └── healthy/
-│
-├── preprocessing/
-├── model/
-├── training.py
-├── testing.py
-├── requirements.txt
-└── README.md
 
-
-
----
 
 ## 🚀 How to Run the Project
 
